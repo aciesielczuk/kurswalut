@@ -33,6 +33,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
             <groupId>aciesielczuk</groupId>
             <artifactId>kurswalut</artifactId>
             <version>1.0-SNAPSHOT</version>
