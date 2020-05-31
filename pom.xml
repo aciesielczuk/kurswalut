@@ -38,6 +38,16 @@
             <version>2.3.1</version>
         </dependency>
         <dependency>
+            <groupId>org.mock-server</groupId>
+            <artifactId>mockserver-netty</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mock-server</groupId>
+            <artifactId>mockserver-junit-jupiter</artifactId>
+            <version>5.10.0</version>
+        </dependency>
+        <dependency>
             <groupId>aciesielczuk</groupId>
             <artifactId>kurswalut</artifactId>
             <version>1.0-SNAPSHOT</version>

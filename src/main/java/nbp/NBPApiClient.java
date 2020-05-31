@@ -1,7 +1,6 @@
-package exchangerates;
+package nbp;
 
-
-import exchangerates.xml.ArrayOfExchangeRates;
+import nbp.xml.ArrayOfExchangeRates;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -13,8 +12,18 @@ import java.net.URL;
 
 public class NBPApiClient {
 
+    private String baseURL;
+
+    public NBPApiClient(String baseURL) {
+        this.baseURL = baseURL;
+    }
+
+    public NBPApiClient() {
+        this.baseURL = "api.nbp.pl";
+    }
+
     public ArrayOfExchangeRates getExchangeRates(String a, int i) throws IOException, JAXBException {
-        URL url = new URL("http://api.nbp.pl/api/exchangerates/tables/C/last/10");
+        URL url = new URL("http://" + baseURL + "/api/exchangerates/tables/C/last/10");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Accept", "application/xml");
@@ -26,6 +35,5 @@ public class NBPApiClient {
 
         return arrayOfExchangeRates;
     }
-
 
 }

@@ -1,4 +1,4 @@
-package exchangerates.xml;
+package nbp.xml;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
