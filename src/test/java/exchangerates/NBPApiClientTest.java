@@ -17,10 +17,7 @@ class NBPApiClientTest {
     @Test
     void returnsXML() throws IOException, JAXBException {
         NBPApiClient nbpApiClient = new NBPApiClient();
-        String result = nbpApiClient.getExchangeRates("A", 1);
-        assertThat(result).contains("ArrayOfExchangeRatesTable");
-
-        ArrayOfExchangeRates unmarshalled = ArrayOfExchangeRatesFactory.fromXML(result);
-        System.out.println(unmarshalled.getExchangeRatesTables().get(0).getRates().get(0).getCurrency());
+        ArrayOfExchangeRates result = nbpApiClient.getExchangeRates("A", 1);
+        System.out.println(result.getExchangeRatesTables().get(0).getRates().get(0).getCurrency());
     }
 }
