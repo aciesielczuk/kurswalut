@@ -3,7 +3,6 @@ package nbp;
 import nbp.xml.ArrayOfExchangeRates;
 import org.junit.jupiter.api.Test;
 import org.mockserver.integration.ClientAndServer;
-import static org.assertj.core.api.Assertions.*;
 
 import javax.xml.bind.JAXBException;
 import java.io.BufferedReader;
@@ -11,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
@@ -23,7 +23,7 @@ class NBPApiClientTest {
                 .getClassLoader().getResourceAsStream("exchangeRates.xml");
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader reader = new BufferedReader(inputStreamReader);
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         String str;
         while ((str = reader.readLine()) != null) {
             sb.append(str);
