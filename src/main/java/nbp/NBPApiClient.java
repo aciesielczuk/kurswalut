@@ -2,8 +2,11 @@ package nbp;
 
 import nbp.xml.ArrayOfExchangeRates;
 import nbp.xml.ArrayOfExchangeRatesFactory;
+import nbp.xml.ExchangeRatesTable;
 
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -31,6 +34,18 @@ public class NBPApiClient {
         con.disconnect();
 
         return arrayOfExchangeRates;
+    }
+
+    public ExchangeRatesTable getExchangeRates(String a, int i, String code) throws IOException, JAXBException {
+        URL url = new URL("http://" + baseURL + "/api/exchangerates/rates/" + a + "/" + code + "/last/" + i);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Accept", "application/xml");
+
+        ExchangeRatesTable exchangeRatesTable = ArrayOfExchangeRatesFactory.exchangeRatesFromXML(new InputStreamReader(con.getInputStream()));
+        con.disconnect();
+
+        return exchangeRatesTable;
     }
 
 }

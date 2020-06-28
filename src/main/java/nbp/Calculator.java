@@ -11,13 +11,9 @@ import java.util.List;
 
 public class Calculator {
 
-    public static double getAverageAsk(String table, int topCount) throws IOException, JAXBException {
-        ArrayOfExchangeRates arrayOfExchangeRates = new NBPApiClient().getExchangeRates(table, topCount);
-        List<ExchangeRatesTable> exchangeRatesTables = arrayOfExchangeRates.getExchangeRatesTables();
-        List<Rate> rates = new ArrayList<>();
-        for (int i = 0; i<topCount; i++) {
-            rates.add(exchangeRatesTables.get(i).getRates().get(0));
-        }
+    public static double getAverageAsk(String table, int topCount, String code) throws IOException, JAXBException {
+        ExchangeRatesTable exchangeRatesTable = new NBPApiClient().getExchangeRates(table, topCount, code);
+        List<Rate> rates = exchangeRatesTable.getRates();
         double sumOfAsk = 0;
         for (Rate rate : rates) {
             sumOfAsk += rate.getAsk();

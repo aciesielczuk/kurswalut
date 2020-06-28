@@ -1,11 +1,9 @@
 package nbp.xml;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
-@XmlRootElement(name = "ExchangeRatesTable")
+@XmlRootElement(name = "ExchangeRatesSeries")
 public class ExchangeRatesTable {
 
     public String getTable() {

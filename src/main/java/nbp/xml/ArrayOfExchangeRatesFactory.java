@@ -13,4 +13,11 @@ public class ArrayOfExchangeRatesFactory {
         ArrayOfExchangeRates arrayOfExchangeRates = (ArrayOfExchangeRates) jaxbUnmarshaller.unmarshal(streamReader);
         return arrayOfExchangeRates;
     }
+
+    public static ExchangeRatesTable exchangeRatesFromXML(InputStreamReader streamReader) throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(ExchangeRatesTable.class);
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        ExchangeRatesTable exchangeRatesTable = (ExchangeRatesTable) jaxbUnmarshaller.unmarshal(streamReader);
+        return exchangeRatesTable;
+    }
 }
