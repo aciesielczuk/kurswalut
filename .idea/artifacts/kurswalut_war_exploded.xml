@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="kurswalut:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/kurswalut_war_exploded</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/kurswalut</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="kurswalut/web/Web" />
       <element id="directory" name="WEB-INF">
