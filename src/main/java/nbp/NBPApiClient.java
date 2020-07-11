@@ -1,6 +1,8 @@
 package nbp;
 
 import nbp.xml.ArrayOfExchangeRates;
+import nbp.xml.ArrayOfExchangeRatesFactory;
+import nbp.xml.ExchangeRatesTable;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -12,7 +14,7 @@ import java.net.URL;
 
 public class NBPApiClient {
 
-    private String baseURL;
+    private final String baseURL;
 
     public NBPApiClient(String baseURL) {
         this.baseURL = baseURL;
@@ -23,17 +25,27 @@ public class NBPApiClient {
     }
 
     public ArrayOfExchangeRates getExchangeRates(String a, int i) throws IOException, JAXBException {
-        URL url = new URL("http://" + baseURL + "/api/exchangerates/tables/C/last/10");
+        URL url = new URL("http://" + baseURL + "/api/exchangerates/tables/" + a + "/last/" + i);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Accept", "application/xml");
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(ArrayOfExchangeRates.class);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        ArrayOfExchangeRates arrayOfExchangeRates = (ArrayOfExchangeRates) jaxbUnmarshaller.unmarshal(new InputStreamReader(con.getInputStream()));
+        ArrayOfExchangeRates arrayOfExchangeRates = ArrayOfExchangeRatesFactory.fromXML(new InputStreamReader(con.getInputStream()));
         con.disconnect();
 
         return arrayOfExchangeRates;
+    }
+
+    public ExchangeRatesTable getExchangeRates(String a, int i, String code) throws IOException, JAXBException {
+        URL url = new URL("http://" + baseURL + "/api/exchangerates/rates/" + a + "/" + code + "/last/" + i);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Accept", "application/xml");
+
+        ExchangeRatesTable exchangeRatesTable = ArrayOfExchangeRatesFactory.exchangeRatesFromXML(new InputStreamReader(con.getInputStream()));
+        con.disconnect();
+
+        return exchangeRatesTable;
     }
 
 }

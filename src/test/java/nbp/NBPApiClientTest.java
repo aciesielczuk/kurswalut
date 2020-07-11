@@ -42,7 +42,7 @@ class NBPApiClientTest {
                                 .withBody(sb.toString())
                 );
         NBPApiClient nbpApiClient = new NBPApiClient("localhost:1080");
-        ArrayOfExchangeRates result = nbpApiClient.getExchangeRates("A", 1);
+        ArrayOfExchangeRates result = nbpApiClient.getExchangeRates("C", 10);
         System.out.println(result.getExchangeRatesTables().get(0).getRates().get(0).getCurrency());
 
         assertThat(result.getExchangeRatesTables().get(0).getRates().get(0).getCurrency()).isEqualTo("dolar ameryka?ski");
